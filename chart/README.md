@@ -6,7 +6,7 @@ This repository contains a Helm chart to run [awweso.me](https://awweso.me) on K
 
 Awwesome is a better ui for the [Awesome Selfhosted](https://github.com/awesome-selfhosted/awesome-selfhosted) list.
 
-> The initial startup, executed by an initContainer, takes some time: approximately 10 minutes. Please, be patient!
+> The initial startup, executed by an initContainer, takes some time: approximately 6 minutes. Please, be patient!
 
 ## Values
 
