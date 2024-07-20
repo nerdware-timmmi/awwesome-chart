@@ -38,6 +38,32 @@ spec:
       {{- end }}
     {{- end }}
     spec:
+      initContainers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.generator.image.repository | default "mkitzmann/awwesome"  }}:{{ .Values.generator.image.tag | default "latest" }}"
+          command: ["/bin/sh"]
+          workingDir: "/usr/src/app"
+          args:
+            - -c
+            - |
+              echo "TOKEN_GITHUB=$(echo -n $GITHUB_TOKEN)" > /usr/src/app/.env
+              cd /usr/src/app/
+              npm run build
+              rm -rf {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}/*
+              cp -r dist/* {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}
+          volumeMounts:
+            - name: {{ include "awwesome.fullname" . }}-volume
+              mountPath: {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}
+          env:
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.generator.secret.name | default "awwesome" }}
+                  key: {{ .Values.generator.secret.key | default "github_token" }}
+          {{- if .Values.generator.resources }}
+          resources:
+          {{- toYaml .Values.generator.resources | nindent 12 }}
+          {{- end }}
       containers:
         - image: "{{ .Values.web.image.repository | default "nginx"  }}:{{ .Values.web.image.tag | default "alpine" }}"
           imagePullPolicy: {{ .Values.web.image.imagePullPolicy | default "Always" }}
