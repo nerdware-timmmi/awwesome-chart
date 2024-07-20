@@ -1,0 +1,60 @@
+---
+# -- String to fully override names.fullname
+fullnameOverride: "awwesome"
+
+web:
+  labels:
+    foo: bar
+  mountPath: "/usr/share/nginx/html"
+  replicas: 1
+  podAnnotations:
+    foo: bar
+  image:
+    reposiory: nginx
+    tag: alpine
+  resources:
+    limits:
+      memory: 50Mi
+    requests:
+      cpu: 10m
+      memory: 50Mi
+  nodeSelector: {}
+  affinity: {}
+  tolerations: {}
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: clusterissuer-prod
+    className: "nginx"
+    tls:
+      - hosts:
+          - awwesome.example.com
+        secretName: "awwesome-secret"
+    hosts:
+      - host: awwesome.example.com
+        paths:
+          - "/"
+  persistence:
+    storageClassName: "local-path"
+    size: 10Gi
+
+generator:
+  labels:
+    bar: foo
+  schedule: "0 0 * * *"
+  image:
+    reposiory: mkitzmann/awwesome
+    tag: 0.7.9
+  secret:
+    name: "awwesome"
+    key: "github_token"
+  resources:
+    limits:
+      memory: 400Mi
+    requests:
+      cpu: 15m
+      memory: 400Mi
+  restartPolicy: "OnFailure"
+  nodeSelector: {}
+  affinity: {}
+  tolerations: {}

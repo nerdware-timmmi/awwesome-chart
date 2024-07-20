@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "awwesome.fullname" . }}-pvc
+  labels:
+    app: awwesome
+    {{- include "awwesome.labels" . | nindent 4 }}
+    {{- if .Values.web.labels }}
+    {{- with .Values.web.labels }}
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- end }}
+spec:
+  {{- if .Values.web.persistence.storageClassName }}
+  storageClassName: {{ .Values.web.persistence.storageClassName }}
+  {{- end }}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.web.persistence.size | default "10Gi" }}

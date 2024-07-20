@@ -1,0 +1,45 @@
+---
+# -- String to fully override names.fullname
+fullnameOverride: "awwesome"
+
+web:
+  labels: {}
+  mountPath: "/usr/share/nginx/html"
+  replicas: 1
+  podAnnotations: {}
+  image:
+    reposiory: nginx
+    tag: alpine
+  resources: {}
+  nodeSelector: {}
+  affinity: {}
+  tolerations: {}
+  ingress:
+    enabled: false
+    annotations: {}
+    className: ""
+    # tls:
+    #   - hosts: []
+    #     secretName: ""
+    hosts:
+      - host: awwesome.example.com
+        paths:
+          - "/"
+  persistence:
+    storageClassName: ""
+    size: 10Gi
+
+generator:
+  labels: {}
+  schedule: ""
+  image:
+    reposiory: mkitzmann/awwesome
+    tag: 0.7.9
+  secret:
+    name: "awwesome"
+    key: "github_token"
+  resources: {}
+  restartPolicy: "OnFailure"
+  nodeSelector: {}
+  affinity: {}
+  tolerations: {}

@@ -1,0 +1,27 @@
+name: Gitea Helm Push
+run-name: ${{ gitea.actor }} builds awwesome helm chart
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+      - bug/**
+      - release/**
+
+jobs:
+  helm-push:
+    runs-on: docker-dind-docker-runner
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: lint helm chart
+        run: |
+          helm lint
+      - name: template helm chart with values-example.yaml
+        run: |
+          helm template . --values values.yaml --values values-example.yaml
+      - name: Push Helm chart to OCI compatible registry (Gitea)
+        run: |
+          cd helm
+          helm repo add  --username ${{ secrets.USERNAME }} --password ${{ secrets.TOKEN }} awwesome-chart ${{ secrets.URL }}
+          helm cm-push ./ awwesome-chart
