@@ -22,6 +22,5 @@ jobs:
           helm template . --values values.yaml --values values-example.yaml
       - name: Push Helm chart to OCI compatible registry (Gitea)
         run: |
-          cd helm
           helm repo add  --username ${{ secrets.USERNAME }} --password ${{ secrets.TOKEN }} awwesome-chart ${{ secrets.URL }}
           helm cm-push ./ awwesome-chart
