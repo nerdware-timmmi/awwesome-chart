@@ -2,11 +2,6 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: {{ include "awwesome.fullname" . }}-generator
-  annotations:
-    # This is what defines this resource as a hook. Without this line, the
-    # job is considered part of the release.
-    "helm.sh/hook": post-install,post-upgrade
-    "helm.sh/hook-weight": "1"
   labels:
     app: awwesome
     {{- include "awwesome.labels" . | nindent 4 }}
