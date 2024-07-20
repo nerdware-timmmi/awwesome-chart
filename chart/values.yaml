@@ -31,7 +31,7 @@ web:
 
 generator:
   labels: {}
-  schedule: ""
+  schedule: "0 */12 * * *"
   image:
     repository: mkitzmann/awwesome
     tag: 0.7.9
