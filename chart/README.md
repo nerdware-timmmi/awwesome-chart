@@ -70,8 +70,7 @@ The following values are applied to the `cronjob`, which runs repeatedly, and to
 | generator.image.repository | mkitzmann/awwesome | Define which Docker repository the generator can be found in.                        |
 | generator.image.tag        | 0.7.9              | Define which Docker tag of the generator should be used.                             |
 | generator.secret.name      | awwesome           | Name of the secret containing the GitHub token.                                      |
-| generator.secret.key       | awwesome           | Name of the key that has the token as its value.                                     |
-| generator.secret.key       | awwesome           | Name of the key that has the token as its value.                                     |
+| generator.secret.key       | github_token           | Name of the key that has the token as its value.                                     |
 | generator.resources        | empty object       | At this point, the resources of the generator can be defined.                        |
 | generator.nodeSelector     | empty object       | At this point, the nodeselector of the generator can be defined.                     |
 | generator.affinity         | empty object       | At this point, the affinity of the generator can be defined.                         |
