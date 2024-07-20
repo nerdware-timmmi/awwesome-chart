@@ -51,6 +51,7 @@ spec:
               npm run build
               rm -rf {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}/*
               cp -r dist/* {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}
+              exit
           volumeMounts:
             - name: {{ include "awwesome.fullname" . }}-volume
               mountPath: {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}
