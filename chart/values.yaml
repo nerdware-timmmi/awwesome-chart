@@ -8,7 +8,7 @@ web:
   replicas: 1
   podAnnotations: {}
   image:
-    reposiory: nginx
+    repository: nginx
     tag: alpine
   resources: {}
   nodeSelector: {}
@@ -33,7 +33,7 @@ generator:
   labels: {}
   schedule: ""
   image:
-    reposiory: mkitzmann/awwesome
+    repository: mkitzmann/awwesome
     tag: 0.7.9
   secret:
     name: "awwesome"
