@@ -39,7 +39,7 @@ spec:
     {{- end }}
     spec:
       initContainers:
-        - name: {{ .Chart.Name }}
+        - name: {{ .Chart.Name }}-initialize
           image: "{{ .Values.generator.image.repository | default "mkitzmann/awwesome"  }}:{{ .Values.generator.image.tag | default "latest" }}"
           command: ["/bin/sh"]
           workingDir: "/usr/src/app"
