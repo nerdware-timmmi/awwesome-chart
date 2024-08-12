@@ -12,6 +12,7 @@ metadata:
   {{- end }}
 spec:
   schedule: {{ .Values.generator.schedule | default "0 */12 * * *" }}
+  concurrencyPolicy: Replace
   jobTemplate:
     spec:
       template:
