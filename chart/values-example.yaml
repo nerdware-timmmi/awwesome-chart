@@ -52,7 +52,7 @@ generator:
     limits:
       memory: 400Mi
     requests:
-      cpu: 15m
+      cpu: 1
       memory: 400Mi
   restartPolicy: "OnFailure"
   nodeSelector: {}
