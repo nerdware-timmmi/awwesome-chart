@@ -32,6 +32,7 @@ web:
 generator:
   labels: {}
   schedule: "0 */12 * * *"
+  activeDeadlineSeconds: 360
   image:
     repository: mkitzmann/awwesome
     tag: 0.7.9
