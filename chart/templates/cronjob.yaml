@@ -15,8 +15,12 @@ spec:
   concurrencyPolicy: Replace
   jobTemplate:
     spec:
+      activeDeadlineSeconds: 360
+      parallelism: 1
       template:
         spec:
+          activeDeadlineSeconds: 360
+          terminationGracePeriodSeconds: 10
           containers:
             - name: {{ .Chart.Name }}
               image: "{{ .Values.generator.image.repository | default "mkitzmann/awwesome"  }}:{{ .Values.generator.image.tag | default "latest" }}"
