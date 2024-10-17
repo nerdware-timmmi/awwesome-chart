@@ -20,7 +20,6 @@ spec:
       template:
         spec:
           activeDeadlineSeconds: {{ .Values.generator.activeDeadlineSeconds | default 360 }}
-          terminationGracePeriodSeconds: 10
           containers:
             - name: {{ .Chart.Name }}
               image: "{{ .Values.generator.image.repository | default "mkitzmann/awwesome"  }}:{{ .Values.generator.image.tag | default "latest" }}"
@@ -60,6 +59,7 @@ spec:
           tolerations:
           {{- toYaml . | nindent 8 }}
           {{- end }}
+          terminationGracePeriodSeconds: {{ .Values.generator.terminationGracePeriodSeconds | default 10 }}
           volumes:
             - name: {{ include "awwesome.fullname" . }}-volume
               persistentVolumeClaim:
