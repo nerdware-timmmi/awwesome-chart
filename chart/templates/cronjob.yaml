@@ -15,11 +15,11 @@ spec:
   concurrencyPolicy: Replace
   jobTemplate:
     spec:
-      activeDeadlineSeconds: 360
+      activeDeadlineSeconds: {{ .Values.generator.activeDeadlineSeconds | default 360 }}
       parallelism: 1
       template:
         spec:
-          activeDeadlineSeconds: 360
+          activeDeadlineSeconds: {{ .Values.generator.activeDeadlineSeconds | default 360 }}
           terminationGracePeriodSeconds: 10
           containers:
             - name: {{ .Chart.Name }}
