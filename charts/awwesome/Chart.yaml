@@ -3,7 +3,10 @@ name: awwesome
 description: A Helm chart to run awweso.me on Kubernetes.
 annotations:
   artifacthub.io/changes: |
-    - make terminationGracePeriodSeconds configurable
+    - Fixed npm run build made more stable by updating packages beforehand.
+    - Added request_delay as configurable option in generator.config, default is 0
+    - Added chunk_size as configurable option in generator.config, default is 20
+    - Added low_commit_count as configurable option in generator.config, default is 2
   artifacthub.io/license: "MIT"
   artifacthub.io/links: |
     - name: awweso.me demo page
@@ -26,7 +29,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.1.1
+version: 0.1.2
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.

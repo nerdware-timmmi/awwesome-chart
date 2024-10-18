@@ -37,7 +37,7 @@ spec:
                 - name: CHUNK_SIZE
                   value: "{{ (.Values.generator.config).chunk_size | default "20"}}"
                 - name: LOW_COMMIT_COUNT
-                  value: "{{ (.Values.generator.config).low_commit_count | default "0"}}"
+                  value: "{{ (.Values.generator.config).low_commit_count | default "2"}}"
                 - name: GITHUB_TOKEN
                   valueFrom:
                     secretKeyRef:
