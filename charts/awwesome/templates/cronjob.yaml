@@ -27,13 +27,7 @@ spec:
               workingDir: "/usr/src/app"
               args:
                 - -c
-                - |
-                  echo "TOKEN_GITHUB=$(echo -n $GITHUB_TOKEN)" > /usr/src/app/.env
-                  cd /usr/src/app/
-                  npm run build
-                  rm -rf {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}/*
-                  cp -r dist/* {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}
-                  echo "done"
+                - echo "TOKEN_GITHUB=$(echo -n $GITHUB_TOKEN)" > /usr/src/app/.env && cd /usr/src/app/ && npm run build && rm -rf {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}/* && cp -r dist/* {{ .Values.web.mountPath | default "/usr/share/nginx/html" }} && echo "done"
               volumeMounts:
                 - name: {{ include "awwesome.fullname" . }}-volume
                   mountPath: {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}
