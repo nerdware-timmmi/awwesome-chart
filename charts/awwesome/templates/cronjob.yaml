@@ -39,11 +39,11 @@ spec:
                   mountPath: {{ .Values.web.mountPath | default "/usr/share/nginx/html" }}
               env:
                 - name: REQUEST_DELAY
-                  value: {{ (.Values.generator.config).request_delay | default 0}}
+                  value: {{ (.Values.generator.config).request_delay | default "0"}}
                 - name: CHUNK_SIZE
-                  value: {{ (.Values.generator.config).chunk_size | default 20}}
+                  value: {{ (.Values.generator.config).chunk_size | default "20"}}
                 - name: LOW_COMMIT_COUNT
-                  value: {{ (.Values.generator.config).low_commit_count | default 0}}
+                  value: {{ (.Values.generator.config).low_commit_count | default "0"}}
                 - name: GITHUB_TOKEN
                   valueFrom:
                     secretKeyRef:
