@@ -23,7 +23,7 @@ spec:
           containers:
             - name: {{ .Chart.Name }}
               image: "{{ .Values.generator.image.repository | default "mkitzmann/awwesome"  }}:{{ .Values.generator.image.tag | default "latest" }}"
-              command: ["/bin/sh"]
+              command: ["/bin/bash"]
               workingDir: "/usr/src/app"
               args:
                 - -c
