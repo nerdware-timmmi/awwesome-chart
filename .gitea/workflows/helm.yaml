@@ -16,14 +16,14 @@ jobs:
         uses: actions/checkout@v3
       - name: lint helm chart
         run: |
-          cd chart
+          cd charts/awwesome
           helm lint
       - name: template helm chart with values-example.yaml
         run: |
-          cd chart
+          cd charts/awwesome
           helm template . --values values.yaml --values values-example.yaml
       - name: Push Helm chart to OCI compatible registry (Gitea)
         run: |
-          cd chart
+          cd charts/awwesome
           helm repo add  --username ${{ secrets.USERNAME }} --password ${{ secrets.TOKEN }} awwesome-chart ${{ secrets.URL }}
           helm cm-push ./ awwesome-chart
